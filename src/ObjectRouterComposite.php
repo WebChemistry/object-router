@@ -7,8 +7,6 @@ use WebChemistry\ObjectRouter\Exceptions\ObjectRouterNotFoundException;
 final class ObjectRouterComposite implements ObjectRouterInterface
 {
 
-	private bool $requireRouter = true;
-
 	/**
 	 * @param ObjectRouterInterface[] $routers
 	 */
@@ -16,13 +14,6 @@ final class ObjectRouterComposite implements ObjectRouterInterface
 		private array $routers = [],
 	)
 	{
-	}
-
-	public function setRequireRouter(bool $requireRouter): static
-	{
-		$this->requireRouter = $requireRouter;
-
-		return $this;
 	}
 
 	/**
@@ -42,7 +33,7 @@ final class ObjectRouterComposite implements ObjectRouterInterface
 	/**
 	 * @inheritDoc
 	 */
-	public function route(object $object, ?string $action = null, array $context = []): ?string
+	public function route(object $object, ?string $action = null, array $context = []): string
 	{
 		foreach ($this->routers as $router) {
 			if ($router->supports($object, $action, $context)) {
@@ -50,11 +41,7 @@ final class ObjectRouterComposite implements ObjectRouterInterface
 			}
 		}
 
-		if ($this->requireRouter) {
-			throw new ObjectRouterNotFoundException($object, $action, $context);
-		}
-
-		return null;
+		throw new ObjectRouterNotFoundException($object, $action, $context);
 	}
 
 }

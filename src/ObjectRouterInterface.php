@@ -13,6 +13,6 @@ interface ObjectRouterInterface
 	/**
 	 * @param mixed[] $context
 	 */
-	public function route(object $object, ?string $action = null, array $context = []): ?string;
+	public function route(object $object, ?string $action = null, array $context = []): string;
 
 }
