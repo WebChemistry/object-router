@@ -28,7 +28,7 @@ final class OHrefNode extends StatementNode
 
 	public function print(PrintContext $context): string
 	{
-		$code = $context->format('$this->global->objectRouter->link(%args)', $this->arguments);
+		$code = $context->format('$this->global->objectRouter->route(%args)', $this->arguments);
 
 		if ($this->element) {
 			$attribute = match ($this->element->name) {
