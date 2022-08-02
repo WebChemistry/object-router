@@ -7,5 +7,10 @@
 		"psr-4": {
 			"WebChemistry\\ObjectRouter\\": "src"
 		}
+	},
+	"require-dev": {
+		"latte/latte": "^3.0",
+		"nette/di": "^3.0",
+		"nette/application": "^3.1"
 	}
 }
